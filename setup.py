@@ -79,7 +79,7 @@ platform_dev_requires = []
 if sys.platform == 'win32' or sys.platform == 'darwin':
     platform_requires = ['pysdl2==0.9.6']
 if sys.platform == 'win32':
-    platform_dev_requires = ['cx_freeze==5.1.1', 'jinja2==2.10.3']
+    platform_dev_requires = ['cx_freeze==6.2', 'jinja2==2.10.3']
 
 package_data = {
     'cfclient.ui':  relative(glob('src/cfclient/ui/*.ui')),
