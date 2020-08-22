@@ -10,21 +10,23 @@ same kind of information is available here for the Crazyflie Python API.
 
 Here\'s a quick overview:
 
--   The GUI is made in QT4 (using QTDesigner 4 and loading the .ui files
+-   The GUI is made in QT5 (using QTDesigner 4 and loading the .ui files
     at runtime)
 -   It uses the SDL2 to read input devices on Windows/Mac OSX and raw
     jsdevs on Linux. It also supports custom input from
     [LeapMotion](https://www.leapmotion.com/) and
     [ZMQ](http://zeromq.org/).
 
-Architecture
-============
+---
 
-![input arch mux](/images/input-arch-mux.png){:.align-right
+## Architecture
+
+![input arch mux](/docs/images/input-arch-mux.png){:.align-right
 width="600"}
 
-Input devices
--------------
+---
+
+## Input devices
 
 The architecture for the input devices in the client strives to give as
 much flexibility as possible and to make cross platform compatibility
@@ -57,7 +59,7 @@ The client can now open any device in the list and read it. If the
 device is from the *inputreaders* module a mapping has to be supplied as
 described below.
 
-#### Input readers
+### Input readers
 
 Currently there\'s two types of *inputreaders*: SDL2 and Linux. The
 Linux backend is used on Linux and SDL2 on all other platforms. In order
@@ -65,22 +67,17 @@ to use the devices connected to the backend a mapping has to be supplied
 to translate the raw axis/buttons indexes (0, 1, 2..) to usable values
 (roll/pitch/yaw/thrust..).
 
-#### Input interfaces
+### Input interfaces
 
 The input interfaces don\'t use any mapping, the devices itself directly
 generate useful values (like roll/pitch/yaw/thrust). Currently there\'s
 two implementations: LeapMotion and ZMQ. Values are read the same way as
 from normal gamepads/joysticks, at 100Hz. For more information on how
-the ZMQ interface works read [here](/functional-areas/cfclient_zmq#input-device).
+the ZMQ interface works read [here](/docs/functional-areas/cfclient_zmq.md#input-device).
 
-### The MUX
+---
 
-#### Scaling and processing
-
-### Input and beyond
-
-Files
-=====
+## Files
 
 To support the application there\'s a number of files around it, such as
 configuration and caching. All these use JSON to store information. All
@@ -90,8 +87,7 @@ that are either copied at the first start up or used in parallel as
 read-only copies to complement what ever is stored in the user
 configuration directory.
 
-User configuration file
------------------------
+### User configuration file
 
 To save the configuration between runs of the application there\'s a
 configuration file (*/conf/config.json*).The file is updated while the
@@ -100,7 +96,6 @@ configuration file.
 
 ``` {.json}
 {
-  "client_side_xmode": false,
   "link_uri": "radio://0/100/250K",
   "input_device": "Sony PLAYSTATION(R)3 Controller",
   "slew_limit": 45,
@@ -128,7 +123,6 @@ configuration file.
 
 | Field                      | Format    | Comments |
 | -------------------------- | --------- | -------- |
-| client\_side\_xmode        | boolean   | Sets whether the client side X-mode is activated or not (more info here)|
 | link\_uri                  | string    | The last successfully connected Crazyflie URI. This is used when you click \"Quick connect\" in the application|
 | auto\_reconnect            | boolean   | Set\'s if auto-reconnect is enabled or not|
 | ui\_update\_period         | int       | The minimum time (in ms) between UI updates for logging values|
@@ -147,8 +141,7 @@ configuration file.
 | max\_yaw                   | float     | Max allowed yaw rate (degrees/s), only applicable in Advanced mode|
 | max\_rp                    | float     | Max allowed roll/pitch (degrees), only applicable in Advanced mode|
 
-Default configuration file
---------------------------
+### Default configuration file
 
 The source code contains a default configuration file
 (*/lib/cfclient/configs/config.json*). The file contains two parts: The
@@ -177,7 +170,6 @@ accessed in the application.
     "min_thrust": 25,
     "max_yaw": 200,
     "max_rp": 30,
-    "client_side_xmode": false,
     "auto_reconnect": false,
     "device_config_mapping": {},
     "enable_debug_driver": false,
@@ -198,8 +190,7 @@ accessed in the application.
 }
 ```
 
-TOC cache files
----------------
+### TOC cache files
 
 In order to speed up the connection procedure for the Crazyflie the TOCs
 are cached ([more info on logging/parameter frameworks and
@@ -406,8 +397,7 @@ Below is an example of part of the param TOC cache:
 }
 ```
 
-Input device configuration
---------------------------
+### Input device configuration
 
 Input device configurations are used to map raw axis (integers) to
 values such as roll/pitch/yaw/thrust (more info above). The
@@ -531,8 +521,7 @@ rotation and the right one controls CCW rotation.
 }
 ```
 
-Log configuration files
------------------------
+### Log configuration files
 
 The user can configure custom logging configurations from the UI (more
 information on logging/parameter

@@ -17,11 +17,12 @@ functionality.
 This page uses the terms
 [roll/pitch/yaw](http://en.wikipedia.org/wiki/Flight_dynamics_(fixed_wing_aircraft))
 extensively. For that to make any sense for a quadcopter we need to know
-where the front is, 
-[Crazyflie 2.X](https://wiki.bitcraze.io/projects:crazyflie2:userguide:index).
+where the front is,
+[Crazyflie 2.X](https://www.bitcraze.io/documentation/system/).
 
-How to get flying
-=================
+---
+
+## How to get flying
 
 -   Start up the application
 -   Insert the joystick and Crazyradio (PA)
@@ -37,12 +38,13 @@ How to get flying
 -   When the handshake is done you can start flying the Crazyflie.
     Remember the most tricky part is the thrust so start out easy\...
 
-For more info on LED indicators etc. have a look at the [Crazyflie 2.X](https://wiki.bitcraze.io/projects:crazyflie2:userguide:index) user guide.
+For more info on LED indicators etc. have a look at the [Crazyflie 2.X](https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyflie-2-x/#understanding-leds) user guide.
 
-Main UI
-=======
+---
 
-![CF client main](/images/cf_client_1.png)
+## Main UI
+
+![CF client main](/docs/images/cf_client_1.png)
 
 1.  The window title will show the connection status
 2.  Connect/disconnect, scan and the drop-down connection list as well
@@ -53,29 +55,29 @@ Main UI
        * *Scan:* Will scan for availible Crazyflies within the chosen address.
        * *Connect:* Will connect to the selected URI in the connection list
        * *Disconnect:* Will disconnect the current Crazyflie
-       * *Address:* The address to scan for. If you didn't change this [in the configuration]( https://wiki.bitcraze.io/doc:crazyflie:client:pycfclient:index#firmware_configuration), then leave the default of 0xE7E7E7E7E7
+       * *Address:* The address to scan for. If you didn't change this [in the configuration]( #firmware-configuration), then leave the default of 0xE7E7E7E7E7
        * *Auto Reconnect:* Try to automatically reconnect when connection is lost.
     - Battery and link quality (from 0% to 100%)
     - Tabs with specific functionality (see below for details)
     - The selected and used input interface
 
-Functionality
-=============
+---
+
+## Functionality
 
 Below are a few guides on how to accomplish specific tasks with the
 client.
 
-Firmware upgrade
-----------------
+### Firmware upgrade
 
 For updating the Crazyflie firmware there\'s the possibility to enter
 bootloader mode and flash [new
-firmware](https://wiki.bitcraze.io/misc:downloads:index) from within the
+firmware](https://github.com/bitcraze/crazyflie-release/releases) from within the
 client. The bootloader mode is accessed from the menu
 *Crazyflie-\>Bootloader*. If there is any problem during the flashing or
 a wrong firmware is flashed the process can just be started again.
 
-![CFclient bootloading](/images/crazyflie_bootloading.png)
+![CFclient bootloading](/docs/images/crazyflie_bootloading.png)
 
 To update the firmware in the Crazyflie 2.X do the following:
 
@@ -88,10 +90,8 @@ To update the firmware in the Crazyflie 2.X do the following:
     start from an un-powered state. Then hold the button and connect
     power.
 -   Click \"Initiate bootloader cold boot\"
--   Press \"Browse\" and select the binary you want to download *(e.g.
-    cflie.bin)*. **Note:** A \*.bin file will be flashed to the STM32xxx
-    only. Or select a [zip](https://wiki.bitcraze.io/doc:crazyflie:bootloader:index) file
-    containing firmware for both nRF51 and STM32F405 for Crazyflie 2.X.
+-   Press \"Browse\" and select the file you want to flash and whether you want
+    to flash both the mcu's or just one of them. (zip-file is for both).
 -   Press \"Program\" and wait
 -   Press \"Restart in firmware mode\"
 
@@ -99,8 +99,7 @@ To check the firmware version, under the *View* menu, open up
 *Tabs-\>Console* tab and look at the output when connecting to the
 Crazyflie 2.X.
 
-Firmware configuration
-----------------------
+### Firmware configuration
 
 It is possible to set another channel to communicate with the Crazyflie 2.X. It can be wise to do this if there exist other wireless
 networks that can interfere, especially WiFi. It is also possible to
@@ -131,13 +130,11 @@ any time the same way.
 
 First connect to the Crazyflie 2.X with the normal connect button. Then open "Crazyflie->Configure 2.X" to reach the configure 2.X dialog
 
-![CF2 config](/images/cfclient_cf2_config.png){:width="500"}
+![CF2 config](/docs/images/cfclient_cf2_config.png){:width="500"}
 
 Once the settings has been made press the write button to save them permanently in the Crazyflie 2.X EEPROM.
 
-
-Logging
--------
+### Logging
 
 The Crazyflie logging framework allows to log the state of Crazyflie
 variables in real-time. This subsystem is used by the client to show
@@ -153,7 +150,7 @@ plotted in the plotter and saved to file in the log block tab.
 To setup a new log block click on the menu \"settings/logging
 configuration\", You then see the following toolbox:
 
-![cfclient logging configuration](/images/client_log-configuration_anotated.png){:align-center}
+![cfclient logging configuration](/docs/images/client_log-configuration_anotated.png){:align-center}
 
 1.  List of log variable in the Crazyflie
 2.  Log variables in the current log block
@@ -162,26 +159,24 @@ configuration\", You then see the following toolbox:
 5.  Period at which the variables are sampled and the block is send by
     the Crazyflie to the client. The minimum possible period is 10ms
     (100Hz) and it can be set by step of 10ms up to 2550ms.
-6.  Space taken by the variables in the log block.
-7.  Name of the new or existing log blocks. You can choose an existing
-    block from the list or type the name of a new one
-8.  Load existing log block configuration
+6.  Bytes used by the variables in the log block.
+7.  File-tree structure where you can sort the log-blocks into categories.
+8.  Create/delete a category or a log-configuration. This can also
+    be done by right-clicking anywhere in the category-tree.
 9.  Save log block configuration
 
-Flight settings
----------------
+### Flight settings
 
 By using the settings on the [Flight control
 tab](#flightcontrol) you can set
 things such as the max roll/pitch and thrust.
 
-Input devices
--------------
+### Input devices
 
 In order to control the Crazyflie you are connected to you will need
 some input-device. Normally this would be a gamepad, but any
-input-device with at least 4 analog axis will do. Here\'s [a
-list](/userguides/inputdevices/) of some input-devices
+input-device with at least 4 analog axis will do. Here\'s
+[a list](/docs/userguides/inputdevices.md) of some input-devices
 that are used.
 
 In order to make sense of the input from the device a mapping has to be
@@ -196,18 +191,18 @@ but if you have another input-device then it\'s quick to create your own
 configuration. Go to the menu *Input device -\> Configure device
 mapping*.
 
-![cfclient configure device](/images/cfclient_devconfig_select.png){:align-center
+![cfclient configure device](/docs/images/cfclient_devconfig_select.png){:align-center
 width="700"}
 
 Select the device you would like to configure and press *Configure*.
 
-![cfclient configure device axis](/images/cfclient_devconfig_axis.png){:align-center
+![cfclient configure device axis](/docs/images/cfclient_devconfig_axis.png){:align-center
 width="700"}
 
 For each functionality that can be mapped there\'s a *Detect* button, by
 pressing it the following dialog will appear.
 
-![cfclient configure device detect](/images/cfclient_devconfig_dialog.png){:align-center
+![cfclient configure device detect](/docs/images/cfclient_devconfig_dialog.png){:align-center
 width="300"}
 
 Follow the instructions to detect the axis or button that you would like
@@ -219,7 +214,7 @@ Go though all the functionality you would like to map by pressing the
 *Detect* button for each. To be able to save the mapping you will at
 least have to map roll, pitch, yaw and thrust.
 
-![cfclient configure device feedback](/images/cfclient_devconfig_feedback.png){:align-center
+![cfclient configure device feedback](/docs/images/cfclient_devconfig_feedback.png){:align-center
 width="700"}
 
 Once you have mapped functionality you will be able to see the feedback
@@ -262,74 +257,76 @@ For normal usage just enter the *Normal* menu, select the device you
 would like to use and the correct mapping. As a device is selected the
 list of mappings are enabled.
 
-![cfclient devices normal](/images/cfclient_input_normal.png){:align-center
+![cfclient devices normal](/docs/images/cfclient_input_normal.png){:align-center
 width="700"}
 
 If more than one input device is connected then it\'s possible to switch
 to one of the teacher modes.
 
-![cfclient devices mux select](/images/cfclient_input_mux_select.png){:align-center
+![cfclient devices mux select](/docs/images/cfclient_input_mux_select.png){:align-center
 width="700"}
 
 First select the device that should be used for the teacher and then
 it\'s mapping.
 
-![cfclient input teacher](/images/cfclient_input_teacher.png){:align-center
+![cfclient input teacher](/docs/images/cfclient_input_teacher.png){:align-center
 width="700"}
 
 Then select the device that should be used for the student and then
 it\'s mapping.
 
-![cfclient input student](/images/cfclient_input_student.png){:align-center
+![cfclient input student](/docs/images/cfclient_input_student.png){:align-center
 width="700"}
 
 Once this is done you will be able to see the open devices and
 configurations at the bottom of the user interface.
 
-![cfclient input mux configured](/images/cfclient_input_mux_configured.png){:align-center
+![cfclient input mux configured](/docs/images/cfclient_input_mux_configured.png){:align-center
 width="700"}
 
-Tabs
-====
+---
+
+## Tabs
 
 The main interface is built up of different tabs that can be
 shown/hidden from the *View-\>Tabs* menu.
 
-Flightcontrol
--------------
+### Flightcontrol
 
 The normal view used when flying is the one seen below.
-![cfclient flighttab](/images/cfclient_flightab.png){:align-center}
+![cfclient flighttab](/docs/images/cfclient_flightab.png){:align-center}
 
 1.  Flight mode selector (Normal and Advanced)
+    * *Normal:* Recommended for beginners
+    * *Advanced:* Will unlock flight settings in 3
 
+2.  Assisted mode selection. The assisted mode is enabled when the assisted mode
+    button is pressed on the Gamepad.
+    * *Altitude hold*: Keeps the Crazyflie at its current altitude automatically. Thrust control becomes height velocity control.
+    * *Position hold*: Keeps the Crazyflie at its current 3D position. Pitch/Roll/Thrust control becomes X/Y/Z velocity control.
+    * *Height hold*: When activated, keeps the Crazyflie at 40cm above the ground. Thrust control becomes height velocity control. Requires a height sensor like the [Z-Ranger deck](https://www.bitcraze.io/products/z-ranger-deck-v2/).
+    * *Hover*: When activated, keeps the Crazyflie at 40cm above the ground and tries to
+    keep the position in X and Y as well. Thrust control becomes height velocity
+    control. Requires a flow deck. Uses body-fixed coordinates.
+3. Roll/pitch trim can be set either in the UI or using the controller (if the correct buttons are mapped).
+    This will offset the input to the Crazyflie for correcting imbalance and reducing drift.
+4. Advanced flight control settings are available if Advanced mode has been selected (settings are in %):
+    * *Max angle:* Set the max roll/pitch angle allowed
+    * *Max yaw rate:*Set the max yaw rate allowed
+    * *Max thrust:* Set the max thrust allowed
+    * *Min thrust:* Minimum thrust before 0 is sent to the Crazyflie
+    * *Slew limit:* Set the percentage where the thrust is slew controlled (the thrust value lowering will be limited). This makes the Crazyflie a bit easier to fly for beginners
+    * *Slew rate:* When the thrust is below the slew limit, this is the maximum rate of lowering the thrust
+5. Settings for flight decks, currently the LED-ring effect and headlights can be set (if the ring is attached)
+6. Target values sent from the client for controlling the Crazyflie
+7. Actual values logged from the Crazyflie
+8. Motor output on the Crazyflie
+9. Horizon indicator
 
-
-       * *Normal:* Recommended for beginners
-       * *Advanced:* Will unlock flight settings in 3
-    - Assisted mode selection. The assisted mode is enabled when the assisted mode button is pressed on the Gamepad.
-       * *Altitude hold*: Keeps the Crazyflie at its current altitude automatically. Thrust control becomes height velocity control.
-       * *Position hold*: Keeps the Crazyflie at its current 3D position. Pitch/Roll/Thrust control becomes X/Y/Z velocity control.
-       * *Height hold*: When activated, keeps the Crazyflie at 40cm above the ground. Thrust control becomes height velocity control. Requires a height sensor like the [Z-Ranger deck](https://wiki.bitcraze.io/projects:crazyflie2:expansionboards:zranger).
-    - Roll/pitch trim can be set either in the UI or using the controller (if the correct buttons are mapped). This will offset the input to the Crazyflie for correcting imbalance and reducing drift.
-    - Advanced flight control settings are available if Advanced mode has been selected (settings are in %):
-       * *Max angle:* Set the max roll/pitch angle allowed
-       * *Max yaw rate:*Set the max yaw rate allowed
-       * *Max thrust:* Set the max thrust allowed
-       * *Min thrust:* Minimum thrust before 0 is sent to the Crazyflie
-       * *Slew limit:* Set the percentage where the thrust is slew controlled (the thrust value lowering will be limited). This makes the Crazyflie a bit easier to fly for beginners
-       * *Slew rate:* When the thrust is below the slew limit, this is the maximum rate of lowering the thrust
-    - Settings for flight decks, currently the LED-ring effect and headlights can be set (if the ring is attached)
-    - Target values sent from the client for controlling the Crazyflie
-    - Actual values logged from the Crazyflie
-    - Motor output on the Crazyflie
-    - Horizon indicator
-
-Plotter
--------
+### Plotter
 
 The plotter tab can be used to visualize data logged from the Crazyflie
-![cfclient plotter](/images/cfclient_ploter.png){:align-center
+![cfclient plotter](/docs/images/cfclient_ploter.png){:align-center
 width="700"}
 
 1.  Select logging configuration to plot. Read about how to create
@@ -342,15 +339,14 @@ width="700"}
 6.  Auto update graph. If this is disabled the plot will stop updating
     (but data will still be collected in the background)
 
-Parameters
-----------
+### Parameters
 
 The Crazyflie supports parameters, variables stored in the Crazyflie
 that can be changed in real-time. The parameter tab can be used to view
 and update parameters. For more information about parameters see
-logging and parameter frameworks LINK TO CF-FIRMWARE!
+[logging and parameter frameworks](https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/userguides/logparam/).
 
-![cfclient parameter list](/images/cfclient_param.png){:align-center
+![cfclient parameter list](/docs/images/cfclient_param.png){:align-center
 width="700"}
 
 1.  Parameter information fields
@@ -364,14 +360,13 @@ width="700"}
     - Group: To make things easier each group has it's members organized as sub-nodes to the group
     - Parameters: The full name of each parameter is the group combined with the name (group.name)
 
-Log blocks
-----------
+### Log blocks
 
 The log blocks tab shows all log configurations that are saved and if
 they are started. It\'s also possible to start/stop them as well as
 write the logged data to file.
 
-![cfclient log blocks](/images/cfclient_logblocks_marked.png){:align-center
+![cfclient log blocks](/docs/images/cfclient_logblocks_marked.png){:align-center
 width="700"}
 
 1.  Fields
@@ -412,19 +407,16 @@ of what\'s logged when logging the battery level:
     13103,3.74252200127
 
 
-
-Console
--------
+### Console
 
 The console tab will show printouts from the Crazyflie firmware as it\'s
 running.
-![cfclient console](/images/cfclient_console_marked.png){:align-center
+![cfclient console](/docs/images/cfclient_console_marked.png){:align-center
 width="700"}
 
 1.  Console output from the Crazyflie
 
-Loco Positioning
-----------------
+### Loco Positioning
 
 The Loco Positioning tab shows information from the Loco Positioning
 system when present.
@@ -439,7 +431,7 @@ The tab can be used in two modes that is selected with the radio buttons
 to the right
 
 To setup the LPS anchor system mode (TWR or TDoA), see the [Configure
-LPS positioning mode wirelessly](https://wiki.bitcraze.io/doc:lps:configure-mode) documentation.
+LPS positioning mode wirelessly](https://www.bitcraze.io/documentation/repository/lps-node-firmware/master/) documentation.
 
 ### Position estimate mode
 
@@ -447,7 +439,7 @@ Displays the configured anchor positions and the estimated position of
 the Crazyflie. Can be used to make sure the system is set up correctly
 and that the estimated position is reasonable.
 
-![cfclient positioning](/images/cfclient_position_estimate.png){:align-center
+![cfclient positioning](/docs/images/cfclient_position_estimate.png){:align-center
 width="700"}
 
 1.  Plot for X/Y (top view) showing anchors and Crazyflie
@@ -490,7 +482,7 @@ displays the configured anchor positions. When the crazyflie is close to
 an anchor this is indicated in the graphs by highlighting it. This mode
 is useful to identify anchors and verify that the system is correctly
 configured.
-![cfclient anchors](/images/cfclient_anchor_identification.png){:align-center
+![cfclient anchors](/docs/images/cfclient_anchor_identification.png){:align-center
 width="700"}
 
 1.  Plot for X/Y (top view) showing anchors and Crazyflie
@@ -503,23 +495,22 @@ width="700"}
 5.  Current system mode indication. The system must be in TWR mode for
     the anchor identification mode to be available.
 
-ZMQ backends
-============
+---
+
+## ZMQ backends
 
 The UI is normally used to get/set parameters, view logged data and send
 control commands to the Crazyflie. Aside from this there\'s also the
 possibility to connect via ZMQ to the client and control several things:
 
--   [Parameters](/functional-areas/cfclient_zmq#parameters):
+-   [Parameters](/docs/functional-areas/cfclient_zmq.md#parameters):
     Get/set parameters by name
--   [LED-ring memory](/functional-areas/cfclient_zmq#led-ring):
+-   [LED-ring memory](/docs/functional-areas/cfclient_zmq.md#led-ring):
     Write LED ring memory
--   [Input-device](/functional-areas/cfclient_zmq#input-device):
+-   [Input-device](/docs/functional-areas/cfclient_zmq.md#input-device):
     Act as an input device
 
-The benefit of using this approach instead of the [stand-alone ZMQ
-server](https://wiki.bitcraze.io/doc:crazyflie:client:cfzmq:index) is that you will not have to
+The benefit of using this approach instead of the stand-alone ZMQ
+server is that you will not have to
 take care of everything, just the parts you are interested in for the
-moment. An example is [this video](https://vine.co/v/eZ3jZqxmeZh) where
-the light/sound is controlled via ZMQ though the client, but everything
-else is like normal (flying, input device, etc).
+moment.
