@@ -4,7 +4,7 @@ page_id: cfclient_zmq
 ---
 
 
-The [Crazyflie Python client](/userguides/userguide_client/)
+The [Crazyflie Python client](/docs/userguides/userguide_client.md)
 runs a number of back-ends where you can set/get information from other
 applications via [ZMQ](http://zeromq.org/).
 
@@ -16,14 +16,14 @@ Here\'s a list of the ports/functions available:
  | 1214 |  PUSH  | LED-ring memory|
  | 1212 |  PULL |  Input device|
 
-Parameters
-==========
+---
+
+## Parameters
 
 The parameter back-end gives access to setting parameters in the
 Crazyflie. The back-end is enabled by default.
 
-Protocol
---------
+### Protocol
 
 Available fields:
 
@@ -44,16 +44,15 @@ parameter to 4000.
       "value": "4000"
     }
 
+---
 
-LED-ring
-========
+## LED-ring
 
 The LED-ring back-end gives access to the LED-ring memory driver where
 the user can write the RGB values for all 12 LEDs on the ring. The
 back-end is enabled by default.
 
-Protocol
---------
+### Protocol
 
  Available fields:
 
@@ -82,8 +81,9 @@ Example of setting all LEDs off:
       ]
     }
 
-Input device
-============
+---
+
+## Input device
 
 If you don\'t want to use the API and you don\'t want to bother about
 scanning/connecting/logging/etc or there\'s no API for the environment
@@ -96,12 +96,11 @@ parameters, it\'s just the control part that\'s broken out.
 By default this is disabled in the configuration file and needs to be
 enabled. The configuration file parameter is named *enable\_zmq\_input*
 (see
-[this](/development/dev_info_client#user-configuration-file) to
+[this](/docs/development/dev_info_client.md#user-configuration-file) to
 edit the configuration). To enable controlling by the back-end select
 the *ZMQ\@127.0.0.1:1212* input device in the *Input device* menu.
 
-Protocol
---------
+### Protocol
 
 Available fields:
 

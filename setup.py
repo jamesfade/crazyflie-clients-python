@@ -77,7 +77,7 @@ else:
 platform_requires = []
 platform_dev_requires = []
 if sys.platform == 'win32' or sys.platform == 'darwin':
-    platform_requires = ['pysdl2==0.9.6']
+    platform_requires = ['pysdl2~=0.9.6']
 if sys.platform == 'win32':
     platform_dev_requires = ['cx_freeze==6.2', 'jinja2==2.10.3']
 
@@ -90,8 +90,8 @@ package_data = {
     'cfclient':  relative(glob('src/cfclient/configs/*.json'), 'configs/') +  # noqa
                  relative(glob('src/cfclient/configs/input/*.json'), 'configs/input/') +  # noqa
                  relative(glob('src/cfclient/configs/log/*.json'), 'configs/log/') +  # noqa
-                 relative(glob('src/cfclient/resources/*'), 'resources/') +
-                 relative(glob('src/cfclient/*.png')),
+                 relative(glob('src/cfclient/resources/*'), 'resources/') +  # noqa
+                 relative(glob('src/cfclient/*.png')),  # noqa
     '': ['README.md']
 }
 data_files = [
